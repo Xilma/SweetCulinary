@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="RecipeTitles">
+        <item name="android:textSize">@dimen/mid_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:layout_margin">@dimen/norm_padding</item>
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
 </resources>
