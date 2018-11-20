@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/norm_padding"
+    android:background="@color/colorBackground"
     tools:context=".views.MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_recipes"
-        android:layout_width="wrap_content"
+        android:id="@+id/rv_recipe"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/norm_padding" />
+        android:padding="@dimen/mid_padding" />
 
 </RelativeLayout>

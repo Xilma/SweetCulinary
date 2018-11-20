@@ -1,4 +1,4 @@
-package android.example.com.sweetculinary.models;
+package rilma.example.com.sweetculinary.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

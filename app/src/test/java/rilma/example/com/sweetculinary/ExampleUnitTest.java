@@ -1,4 +1,4 @@
-package android.example.com.sweetculinary;
+package rilma.example.com.sweetculinary;
 
 import org.junit.Test;
 

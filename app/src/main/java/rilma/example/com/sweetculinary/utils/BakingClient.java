@@ -1,4 +1,4 @@
-package android.example.com.sweetculinary.utils;
+package rilma.example.com.sweetculinary.utils;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

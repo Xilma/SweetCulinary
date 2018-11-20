@@ -1,4 +1,4 @@
-package android.example.com.sweetculinary;
+package rilma.example.com.sweetculinary;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
