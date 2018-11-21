@@ -1,15 +1,11 @@
 package rilma.example.com.sweetculinary.views;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import rilma.example.com.sweetculinary.R;
-import rilma.example.com.sweetculinary.adapters.RecipeAdapter;
-import rilma.example.com.sweetculinary.models.Recipe;
-import rilma.example.com.sweetculinary.utils.BakingClient;
-import rilma.example.com.sweetculinary.utils.BakingService;
-import rilma.example.com.sweetculinary.utils.Network;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +21,12 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rilma.example.com.sweetculinary.R;
+import rilma.example.com.sweetculinary.adapters.RecipeAdapter;
+import rilma.example.com.sweetculinary.models.Recipe;
+import rilma.example.com.sweetculinary.utils.BakingClient;
+import rilma.example.com.sweetculinary.utils.BakingService;
+import rilma.example.com.sweetculinary.utils.Network;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     String jsonResult;
     ArrayList<Recipe> recipeList = new ArrayList<>();
 
-    @BindView(rilma.example.com.sweetculinary.R.id.rv_recipe) RecyclerView recyclerView;
+    @BindView(R.id.rv_recipe) RecyclerView recyclerView;
 
     private boolean isTablet;
 
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(rilma.example.com.sweetculinary.R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 /*
         if(findViewById(R.id.recipe_tablet) != null){
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         alert11.show();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class FetchRecipesAsync extends AsyncTask<Void,Void,Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
-            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
+            public void onResponse(@NonNull Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
 
                 recipeList = response.body();
 
@@ -145,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
+            public void onFailure(@NonNull Call<ArrayList<Recipe>> call, Throwable t) {
                 Log.d("Failed to import json", t.toString());
             }
         });

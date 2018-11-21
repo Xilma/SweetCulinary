@@ -5,4 +5,7 @@
     <string name="close_button">Close</string>
     <string name="ingredients">Ingredients:</string>
     <string name="quantity">Quantity:</string>
+    <string name="recipe_servings">Servings:</string>
+    <string name="begin">Begin</string>
+    <string name="servings">Servings:</string>
 </resources>

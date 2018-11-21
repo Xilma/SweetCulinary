@@ -15,7 +15,7 @@ public class ConstantValues {
     public static final String YUMMIO_SHARED_PREF = "yummio_shared_pref";
 
     public static String[] units = {"CUP", "TBLSP", "TSP", "G", "K", "OZ", "UNIT"};
-    public static String[] unitName = {"Cup", "Tablespoon", "Teaspoon", "Gram", "Kilogram", "Ounce", "Unit"};
+    public static String[] unitName = {"Cup", "Tblsp", "Tsp", "gram", "Kg", "Ounce", "Unit"};
     public static int[] unitImages = {
             rilma.example.com.sweetculinary.R.drawable.ic_mug,
             rilma.example.com.sweetculinary.R.drawable.ic_tablespoon,
