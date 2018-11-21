@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/parent_layout">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        android:layout_margin="@dimen/norm_padding"
+        card_view:cardCornerRadius="@dimen/small_padding"
+        android:padding="@dimen/norm_padding"
+        android:elevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/unit_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/unit_image"
+                    android:layout_width="@dimen/unit_image"
+                    android:layout_height="@dimen/unit_image"
+                    android:layout_marginTop="@dimen/norm_padding"
+                    android:layout_marginLeft="@dimen/norm_padding"
+                    android:layout_marginRight="@dimen/norm_padding"/>
+
+                <TextView
+                    android:id="@+id/tv_measure_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/RecipeTitles"
+                    android:layout_gravity="center_horizontal"
+                    android:text="K"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_ingredient_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/unit_layout"
+                style="@style/RecipeTitles"
+                android:maxLines="3"
+                android:text="Nutella or other chocolate-hazelnut spread"/>
+
+            <TextView
+                android:id="@+id/tv_servings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/unit_layout"
+                android:layout_below="@id/tv_ingredient_name"
+                style="@style/RecipeTitles"
+                android:text="@string/quantity"/>
+
+            <TextView
+                android:id="@+id/tv_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_servings"
+                android:layout_below="@id/tv_ingredient_name"
+                style="@style/RecipeTitles"
+                android:text="1"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

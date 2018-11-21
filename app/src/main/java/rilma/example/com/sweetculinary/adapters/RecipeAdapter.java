@@ -42,7 +42,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(rilma.example.com.sweetculinary.R.layout.recipe_list_item, parent, false);
+        View view = inflater.inflate(R.layout.recipe_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -52,13 +52,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.recipeName.setText(recipeNameList.get(position).getName());
 
         switch (position){
-            case 0 : holder.recipeImage.setImageResource(rilma.example.com.sweetculinary.R.drawable.nutella_pie);
+            case 0 : holder.recipeImage.setImageResource(R.drawable.nutella_pie);
                 break;
-            case 1 : holder.recipeImage.setImageResource(rilma.example.com.sweetculinary.R.drawable.brownies);
+            case 1 : holder.recipeImage.setImageResource(R.drawable.brownies);
                 break;
-            case 2 : holder.recipeImage.setImageResource(rilma.example.com.sweetculinary.R.drawable.yellow_cake);
+            case 2 : holder.recipeImage.setImageResource(R.drawable.yellow_cake);
                 break;
-            case 3 : holder.recipeImage.setImageResource(rilma.example.com.sweetculinary.R.drawable.cheese_cake);
+            case 3 : holder.recipeImage.setImageResource(R.drawable.cheese_cake);
                 break;
         }
 

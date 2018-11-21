@@ -32,8 +32,16 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/recipe_image"
                 style="@style/RecipeTitles"
-                android:layout_centerVertical="true"
                 android:text="Nutella Pie"/>
+
+            <TextView
+                android:id="@+id/tv_recipe_servings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/recipe_image"
+                android:layout_below="@id/tv_recipe_name"
+                style="@style/RecipeTitles"
+                android:text="Servings: "/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

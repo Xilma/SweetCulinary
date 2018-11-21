@@ -3,4 +3,6 @@
     <string name="no_network">No internet connection</string>
     <string name="reload_button">Retry</string>
     <string name="close_button">Close</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="quantity">Quantity:</string>
 </resources>
