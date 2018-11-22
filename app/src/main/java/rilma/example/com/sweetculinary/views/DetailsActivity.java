@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,6 +93,8 @@ public class DetailsActivity extends AppCompatActivity {
                 jsonResult = recipeIntent.getStringExtra(ConstantValues.JSON_RESULT_EXTRA);
                 stepList = (ArrayList<Step>) recipeList.get(0).getSteps();
                 ingredientList = recipeList.get(0).getIngredients();
+                String title = recipeList.get(0).getName();
+                setActionBarTitle(title);
             }
         }
 
@@ -114,6 +117,7 @@ public class DetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailsActivity.this, TutorialActivity.class);
                 intent.putParcelableArrayListExtra(ConstantValues.STEP_INTENT_EXTRA, stepList);
+                intent.putExtra(ConstantValues.RECIPE_INTENT_EXTRA, recipeList.get(0).getName());
                 intent.putExtra(ConstantValues.JSON_RESULT_EXTRA, jsonResult);
                 startActivity(intent);
             }
@@ -136,5 +140,14 @@ public class DetailsActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList(RECIPE_LIST_STATE, recipeList);
         outState.putString(RECIPE_JSON_STATE, jsonResult);
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    public void setActionBarTitle(String title) {
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
     }
 }

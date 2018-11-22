@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +37,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     Button previousStep;
     
     ArrayList<Step> stepList = new ArrayList<>();
+
     String jsonResult;
     boolean isFromWidget;
     LinearLayoutManager linearLayoutManager;
@@ -64,6 +66,10 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
             }
             if (intent.hasExtra(ConstantValues.JSON_RESULT_EXTRA)) {
                 jsonResult = getIntent().getStringExtra(ConstantValues.JSON_RESULT_EXTRA);
+            }
+            if (intent.hasExtra(ConstantValues.RECIPE_INTENT_EXTRA)){
+                String title = getIntent().getStringExtra(ConstantValues.RECIPE_INTENT_EXTRA);
+                setActionBarTitle(title);
             }
             if(intent.getStringExtra(ConstantValues.WIDGET_EXTRA) != null){
                 isFromWidget = true;
@@ -181,6 +187,10 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
             jsonResult = savedInstanceState.getString(STEP_LIST_JSON_STATE);
             videoNumber = savedInstanceState.getInt(STEP_NUMBER_STATE);
         }
+    }
+
+    public void setActionBarTitle(String title) {
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
     }
 
 }
