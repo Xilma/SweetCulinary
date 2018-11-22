@@ -8,4 +8,10 @@
     <string name="recipe_servings">Servings:</string>
     <string name="begin">Begin</string>
     <string name="servings">Servings:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next_step">Next step</string>
+    <string name="previous_step">Previous step</string>
+    <string name="end_tutorial">End of video tutorial</string>
 </resources>
