@@ -16,9 +16,9 @@
         android:layout_marginEnd="@dimen/norm_padding"
         android:layout_marginStart="@dimen/norm_padding"
         android:layout_marginTop="@dimen/norm_padding"
-        app:layout_constraintBottom_toTopOf="@+id/bv_previous_step"
+        app:layout_constraintBottom_toTopOf="@id/bv_next_step"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rv_recipe_steps"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -30,6 +30,7 @@
         android:layout_margin="@dimen/norm_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/bv_previous_step" />
 
     <Button
@@ -47,10 +48,11 @@
         android:id="@+id/rv_recipe_steps"
         android:layout_width="@dimen/tablet_width"
         android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/norm_padding"
         android:layout_marginBottom="@dimen/norm_padding"
         android:layout_marginStart="@dimen/norm_padding"
         android:layout_marginTop="@dimen/norm_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bv_previous_step"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
