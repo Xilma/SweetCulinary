@@ -13,4 +13,6 @@
     <string name="previous_step">Previous step</string>
     <string name="end_tutorial">End of video tutorial</string>
     <string name="tutorial">Tutorial</string>
+    <string name="ingredients_title">Ingredients</string>
+    <string name="step_description">Step Description:</string>
 </resources>

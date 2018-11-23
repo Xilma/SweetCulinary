@@ -69,7 +69,8 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
             }
             if (intent.hasExtra(ConstantValues.RECIPE_INTENT_EXTRA)){
                 String title = getIntent().getStringExtra(ConstantValues.RECIPE_INTENT_EXTRA);
-                setActionBarTitle(title);
+                String titleBar = title + " - Tutorial";
+                setActionBarTitle(titleBar);
             }
             if(intent.getStringExtra(ConstantValues.WIDGET_EXTRA) != null){
                 isFromWidget = true;

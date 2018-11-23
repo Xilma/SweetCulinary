@@ -93,7 +93,7 @@ public class DetailsActivity extends AppCompatActivity {
                 jsonResult = recipeIntent.getStringExtra(ConstantValues.JSON_RESULT_EXTRA);
                 stepList = (ArrayList<Step>) recipeList.get(0).getSteps();
                 ingredientList = recipeList.get(0).getIngredients();
-                String title = recipeList.get(0).getName();
+                String title = recipeList.get(0).getName() + " - Ingredients";
                 setActionBarTitle(title);
             }
         }

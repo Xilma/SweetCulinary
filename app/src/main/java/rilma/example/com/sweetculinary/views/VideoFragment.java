@@ -97,7 +97,7 @@ public class VideoFragment extends Fragment {
                     // Check thumbnail
                     if(mStep.getThumbnailURL().equals("")){
                         // If no video or thumbnail, use placeholder image
-                        mPlayerView.setUseArtwork(true);
+                        mPlayerView.setVisibility(View.GONE);
                         mPlayerView.setUseController(false);
                     }
                     else{

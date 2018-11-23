@@ -1,8 +1,8 @@
 package rilma.example.com.sweetculinary.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +16,12 @@ import butterknife.ButterKnife;
 import rilma.example.com.sweetculinary.R;
 import rilma.example.com.sweetculinary.models.Step;
 
-public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepNumberHolder>{
+public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder>{
 
     private final Context context;
     private final ArrayList<Step> stepList;
     public OnStepClick onStepClick;
-    private int rowNo = 0;
+    private int rowNo;
 
     public StepAdapter(Context context, ArrayList<Step> stepArrayList, OnStepClick onStepClick, int rowNo) {
         this.context = context;
@@ -30,36 +30,22 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepNumberHold
         this.rowNo = rowNo;
     }
 
-    public class StepNumberHolder extends RecyclerView.ViewHolder {
-
-        @Nullable
-        @BindView(R.id.tv_step_number)
-        TextView stepNumber;
-
-        @Nullable
-        @BindView(R.id.tv_step_title)
-        TextView stepTitle;
-
-        public StepNumberHolder(View v) {
-            super(v);
-            ButterKnife.bind(this,v);
-        }
-    }
-
     @NonNull
     @Override
-    public StepNumberHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.step_number_item, parent, false);
 
-        return new StepNumberHolder(view);
+        return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull final StepNumberHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         holder.stepTitle.setText(stepList.get(position).getShortDescription());
         holder.stepNumber.setText(String.valueOf(position+1));
+        holder.stepTotal.setText(String.valueOf(position+1) + "/" + String.valueOf(stepList.size()-1));
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +77,23 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepNumberHold
 
     public interface OnStepClick {
         void onStepClick(int position);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.tv_step_number)
+        TextView stepNumber;
+
+        @BindView(R.id.tv_step_title)
+        TextView stepTitle;
+
+        @BindView(R.id.tv_step_total)
+        TextView stepTotal;
+
+        ViewHolder(View v) {
+            super(v);
+            ButterKnife.bind(this,v);
+        }
     }
 }
 
