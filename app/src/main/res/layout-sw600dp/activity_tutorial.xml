@@ -1,0 +1,57 @@
+<android.support.constraint.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:id="@+id/tutorial_tablet"
+    tools:context=".views.TutorialActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_player_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/norm_padding"
+        android:layout_marginEnd="@dimen/norm_padding"
+        android:layout_marginStart="@dimen/norm_padding"
+        android:layout_marginTop="@dimen/norm_padding"
+        app:layout_constraintBottom_toTopOf="@+id/bv_previous_step"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bv_next_step"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/next_step"
+        style="@style/buttonStyle"
+        android:layout_margin="@dimen/norm_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bv_previous_step" />
+
+    <Button
+        android:id="@+id/bv_previous_step"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/buttonStyle"
+        android:text="@string/previous_step"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bv_next_step"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recipe_steps"
+        android:layout_width="@dimen/tablet_width"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/norm_padding"
+        android:layout_marginStart="@dimen/norm_padding"
+        android:layout_marginTop="@dimen/norm_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

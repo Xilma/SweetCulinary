@@ -48,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-/*
+
         if(findViewById(R.id.recipe_tablet) != null){
             isTablet = true;
         }
         else{
             isTablet = false;
         }
-*/
+
         if(savedInstanceState != null){
             jsonResult = savedInstanceState.getString(RECIPE_JSON_STATE);
             recipeList = savedInstanceState.getParcelableArrayList(RECIPE_ARRAYLIST_STATE);

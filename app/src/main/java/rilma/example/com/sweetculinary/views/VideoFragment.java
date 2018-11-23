@@ -83,7 +83,7 @@ public class VideoFragment extends Fragment {
             mWindowIndex = savedInstanceState.getInt(STEP_PLAY_WINDOW_INDEX);
             mVideoUri = Uri.parse(savedInstanceState.getString(STEP_URI));
         }
-        // If there is no saved state getArguments from CookingActivity
+        // If there is no saved state getArguments from TutorialActivity
         else{
             if(getArguments() != null){
 

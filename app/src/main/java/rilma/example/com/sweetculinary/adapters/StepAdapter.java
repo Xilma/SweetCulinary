@@ -45,8 +45,6 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder>{
 
         holder.stepTitle.setText(stepList.get(position).getShortDescription());
         holder.stepNumber.setText(String.valueOf(position+1));
-        holder.stepTotal.setText(String.valueOf(position+1) + "/" + String.valueOf(stepList.size()-1));
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,9 +58,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder>{
         if(rowNo == position){
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorBackground2));
         }
-       /* else if(position == 0){
-            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-        }*/
+
         else
         {
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorBackground3));
@@ -86,9 +82,6 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder>{
 
         @BindView(R.id.tv_step_title)
         TextView stepTitle;
-
-        @BindView(R.id.tv_step_total)
-        TextView stepTotal;
 
         ViewHolder(View v) {
             super(v);

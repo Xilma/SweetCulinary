@@ -3,12 +3,10 @@ package rilma.example.com.sweetculinary.views;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -52,16 +50,12 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-        /*
-        // Up navigation
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         if(findViewById(R.id.recipe_details_tablet) != null){
             isTablet = true;
         }
         else{
             isTablet = false;
-        }*/
+        }
 
 
         if(getIntent().getStringExtra(ConstantValues.WIDGET_EXTRA) != null){
@@ -122,17 +116,6 @@ public class DetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

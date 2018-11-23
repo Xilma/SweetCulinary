@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +36,10 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
     @BindView(R.id.bv_previous_step)
     Button previousStep;
-    
+
+    @BindView(R.id.rv_recipe_steps)
+    RecyclerView recyclerView;
+
     ArrayList<Step> stepList = new ArrayList<>();
 
     String jsonResult;
@@ -47,17 +51,13 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
 
-        // Up navigation
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        /*
         // Check if device is a tablet
-        if(findViewById(R.id.cooking_tablet) != null){
+        if(findViewById(R.id.tutorial_tablet) != null){
             isTablet = true;
         }
         else{
             isTablet = false;
-        }*/
+        }
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -173,10 +173,10 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         }
 
         else{//Tablet view
-            /*stepAdapter = new StepAdapter(this,stepList, this, videoNumber);
+            stepAdapter = new StepAdapter(this, stepList, this, videoNumber);
             linearLayoutManager = new LinearLayoutManager(this);
-            mRecyclerViewSteps.setLayoutManager(linearLayoutManager);
-            mRecyclerViewSteps.setAdapter(stepAdapter);*/
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setAdapter(stepAdapter);
         }
     }
 
