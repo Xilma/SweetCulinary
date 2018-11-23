@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="RecipeTitles">
         <item name="android:textSize">@dimen/mid_text</item>
         <item name="android:textStyle">bold</item>
