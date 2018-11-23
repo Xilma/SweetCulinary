@@ -2,6 +2,7 @@ package rilma.example.com.sweetculinary.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -30,12 +31,15 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     private boolean isTablet;
     private int videoNumber = 0;
 
+    @Nullable
     @BindView(R.id.bv_next_step)
     Button nextStep;
 
+    @Nullable
     @BindView(R.id.bv_previous_step)
     Button previousStep;
 
+    @Nullable
     @BindView(R.id.rv_recipe_steps)
     RecyclerView recyclerView;
 
@@ -51,7 +55,12 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_tutorial);
 
         // Check if device is a tablet
-        isTablet = findViewById(R.id.tutorial_tablet) != null;
+        if(findViewById(R.id.tutorial_tablet) != null){
+            isTablet = true;
+        }
+        else{
+            isTablet = false;
+        }
 
         Intent intent = getIntent();
         if (intent != null) {

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,15 +111,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @Nullable
         @BindView(R.id.tv_recipe_name)
         TextView recipeName;
 
+        @Nullable
         @BindView(R.id.recipe_image)
         ImageView recipeImage;
 
+        @Nullable
         @BindView(R.id.tv_recipe_servings)
         TextView recipeServings;
 
+        @Nullable
         @BindView(R.id.parent_layout)
         LinearLayout recipeLayout;
 

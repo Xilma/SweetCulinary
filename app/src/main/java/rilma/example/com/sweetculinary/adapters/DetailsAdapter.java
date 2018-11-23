@@ -3,6 +3,7 @@ package rilma.example.com.sweetculinary.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -74,15 +75,19 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @Nullable
         @BindView(R.id.unit_image)
         ImageView unitImage;
 
+        @Nullable
         @BindView(R.id.tv_ingredient_name)
         TextView ingredientName;
 
+        @Nullable
         @BindView(R.id.tv_quantity)
         TextView unitQuantity;
 
+        @Nullable
         @BindView(R.id.tv_measure_name)
         TextView ingredientMeasureName;
 

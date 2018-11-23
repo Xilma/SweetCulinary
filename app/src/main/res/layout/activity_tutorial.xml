@@ -1,5 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,39 +6,42 @@
     tools:context=".views.TutorialActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <FrameLayout
-        android:id="@+id/fl_player_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bv_previous_step"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/bv_next_step"
-        style="@style/buttonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/norm_padding"
-        android:text="@string/next_step"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bv_previous_step" />
+        <FrameLayout
+            android:id="@+id/fl_player_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/norm_padding"
+            android:layout_marginEnd="@dimen/norm_padding"
+            android:layout_marginStart="@dimen/norm_padding"
+            android:layout_marginTop="@dimen/norm_padding"
+            android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/bv_previous_step"
-        style="@style/buttonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/previous_step"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bv_next_step"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/bv_next_step"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/norm_padding"
+            android:text="@string/next_step"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/fl_player_container"
+            android:layout_alignParentEnd="true"
+            tools:ignore="RelativeOverlap" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/bv_previous_step"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/previous_step"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/fl_player_container"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+    
+</ScrollView>

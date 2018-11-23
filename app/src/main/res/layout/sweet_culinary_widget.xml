@@ -1,27 +1,33 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:padding="@dimen/widget_margin">
 
-    <ImageView
-        android:id="@+id/widget_icon"
-        android:layout_width="@dimen/recipe_image"
-        android:layout_height="@dimen/recipe_image"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/widget_icon"
-        android:src="@drawable/brownies" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/widget_ingredients"
-        style="@style/RecipeTitles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/widget_icon"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorBackground"
-        android:padding="@dimen/small_padding"
-        android:text="@string/open_ingredients"
-        android:textColor="@color/colorAccent" />
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/widget_icon"
+            android:layout_width="@dimen/recipe_image"
+            android:layout_height="@dimen/recipe_image"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/widget_icon"
+            android:src="@drawable/brownies" />
+
+        <TextView
+            android:id="@+id/widget_ingredients"
+            style="@style/RecipeTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/widget_icon"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorBackground"
+            android:padding="@dimen/small_padding"
+            android:text="@string/open_ingredients"
+            android:textColor="@color/colorAccent" />
+    </RelativeLayout>
+
+</ScrollView>

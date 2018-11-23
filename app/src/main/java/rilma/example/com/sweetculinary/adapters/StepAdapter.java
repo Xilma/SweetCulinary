@@ -3,6 +3,7 @@ package rilma.example.com.sweetculinary.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,9 +75,11 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        @Nullable
         @BindView(R.id.tv_step_number)
         TextView stepNumber;
 
+        @Nullable
         @BindView(R.id.tv_step_title)
         TextView stepTitle;
 

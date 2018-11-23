@@ -40,12 +40,15 @@ public class VideoFragment extends Fragment {
     public static final String STEP_PLAY_WINDOW_INDEX = "step_play_window_index";
     public static final String STEP_SINGLE = "step_single";
 
+    @Nullable
     @BindView(R.id.tv_step_title)
     TextView mStepTitle;
 
+    @Nullable
     @BindView(R.id.player_view)
     SimpleExoPlayerView mPlayerView;
 
+    @Nullable
     @BindView(R.id.tv_step_description)
     TextView mStepDescription;
 

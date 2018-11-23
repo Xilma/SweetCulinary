@@ -35,9 +35,11 @@ public class DetailsActivity extends AppCompatActivity {
     public static final String RECIPE_LIST_STATE = "recipe_details_list";
     public static final String RECIPE_JSON_STATE = "recipe_json_list";
 
+    @Nullable
     @BindView(R.id.rv_ingredients)
     RecyclerView mRecyclerView;
 
+    @Nullable
     @BindView(R.id.bv_begin)
     Button beginCooking;
 

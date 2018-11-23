@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String jsonResult;
     ArrayList<Recipe> recipeList = new ArrayList<>();
 
+    @Nullable
     @BindView(R.id.rv_recipe)
     RecyclerView recyclerView;
 
