@@ -1,5 +1,6 @@
 package rilma.example.com.sweetculinary.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +19,7 @@ import rilma.example.com.sweetculinary.R;
 import rilma.example.com.sweetculinary.models.Ingredient;
 import rilma.example.com.sweetculinary.utils.ConstantValues;
 
-public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder>{
+public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
     private final Context context;
     private final List<Ingredient> ingredientList;
@@ -27,7 +28,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         this.context = context;
         this.ingredientList = ingredientList;
     }
-    
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,6 +38,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         Ingredient ingredient = ingredientList.get(position);
@@ -47,8 +49,8 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         String measure = ingredient.getMeasure();
         int unitNo = 0;
 
-        for(int i = 0; i < ConstantValues.units.length; i++){
-            if(measure.equals(ConstantValues.units[i])){
+        for (int i = 0; i < ConstantValues.units.length; i++) {
+            if (measure.equals(ConstantValues.units[i])) {
                 unitNo = i;
                 break;
             }
@@ -69,19 +71,19 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.unit_image)
         ImageView unitImage;
-        
+
         @BindView(R.id.tv_ingredient_name)
         TextView ingredientName;
-        
+
         @BindView(R.id.tv_quantity)
         TextView unitQuantity;
-        
+
         @BindView(R.id.tv_measure_name)
         TextView ingredientMeasureName;
 
-        public ViewHolder(View v) {
+        ViewHolder(View v) {
             super(v);
-            ButterKnife.bind(this,v);
+            ButterKnife.bind(this, v);
         }
     }
 

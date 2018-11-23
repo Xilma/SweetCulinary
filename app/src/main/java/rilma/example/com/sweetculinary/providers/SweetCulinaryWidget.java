@@ -23,11 +23,11 @@ public class SweetCulinaryWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.sweet_culinary_widget);
 
         Intent intent = new Intent(context, DetailsActivity.class);
-        intent.putExtra(ConstantValues.WIDGET_EXTRA,"CAME_FROM_WIDGET");
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,0);
+        intent.putExtra(ConstantValues.WIDGET_EXTRA, "FROM_WIDGET");
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-        if(jsonRecipeIngredients.equals("")){
-            jsonRecipeIngredients = "No ingredients yet!";
+        if (jsonRecipeIngredients.equals("")) {
+            jsonRecipeIngredients = "No ingredients!";
         }
 
         views.setTextViewText(R.id.widget_ingredients, jsonRecipeIngredients);
@@ -46,9 +46,9 @@ public class SweetCulinaryWidget extends AppWidgetProvider {
         ServiceWidget.startActionOpenRecipe(context);
     }
 
-    public static void updateWidgetRecipe(Context context, String jsonRecipe , int imgResId, AppWidgetManager appWidgetManager,
-                                          int[] appWidgetIds){
-        // There may be multiple widgets active, so update all of them
+    public static void updateWidgetRecipe(Context context, String jsonRecipe, int imgResId, AppWidgetManager appWidgetManager,
+                                          int[] appWidgetIds) {
+        // Update all widgets
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, jsonRecipe, imgResId, appWidgetManager, appWidgetId);
         }

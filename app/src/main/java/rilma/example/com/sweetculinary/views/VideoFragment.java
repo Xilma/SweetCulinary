@@ -25,6 +25,8 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rilma.example.com.sweetculinary.R;
@@ -32,11 +34,11 @@ import rilma.example.com.sweetculinary.models.Step;
 import rilma.example.com.sweetculinary.utils.ConstantValues;
 
 public class VideoFragment extends Fragment {
-    public static final String STEP_URI =  "step_uri";
-    public static final String STEP_VIDEO_POSITION =  "step_video_position";
-    public static final String STEP_PLAY_WHEN_READY =  "step_play_when_ready";
-    public static final String STEP_PLAY_WINDOW_INDEX =  "step_play_window_index";
-    public static final String STEP_SINGLE =  "step_single";
+    public static final String STEP_URI = "step_uri";
+    public static final String STEP_VIDEO_POSITION = "step_video_position";
+    public static final String STEP_PLAY_WHEN_READY = "step_play_when_ready";
+    public static final String STEP_PLAY_WINDOW_INDEX = "step_play_window_index";
+    public static final String STEP_SINGLE = "step_single";
 
     @BindView(R.id.tv_step_title)
     TextView mStepTitle;
@@ -68,7 +70,7 @@ public class VideoFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_video, container, false);
@@ -76,7 +78,7 @@ public class VideoFragment extends Fragment {
         ButterKnife.bind(this, root);
 
         // Check if there is any state saved
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             mStep = savedInstanceState.getParcelable(STEP_SINGLE);
             mShouldPlayWhenReady = savedInstanceState.getBoolean(STEP_PLAY_WHEN_READY);
             mPlayerPosition = savedInstanceState.getLong(STEP_VIDEO_POSITION);
@@ -84,8 +86,8 @@ public class VideoFragment extends Fragment {
             mVideoUri = Uri.parse(savedInstanceState.getString(STEP_URI));
         }
         // If there is no saved state getArguments from TutorialActivity
-        else{
-            if(getArguments() != null){
+        else {
+            if (getArguments() != null) {
 
                 mPlayerView.setVisibility(View.VISIBLE);
 
@@ -93,22 +95,21 @@ public class VideoFragment extends Fragment {
                 mStep = getArguments().getParcelable(ConstantValues.STEP_SINGLE);
 
                 // If has no video
-                if(mStep.getVideoURL().equals("")){
+                assert mStep != null;
+                if (mStep.getVideoURL().equals("")) {
                     // Check thumbnail
-                    if(mStep.getThumbnailURL().equals("")){
+                    if (mStep.getThumbnailURL().equals("")) {
                         // If no video or thumbnail, use placeholder image
                         mPlayerView.setVisibility(View.GONE);
                         mPlayerView.setUseController(false);
-                    }
-                    else{
+                    } else {
                         mPlayerView.setVisibility(View.VISIBLE);
                         mVideoThumbnail = mStep.getThumbnailURL();
                         mVideoThumbnailImage = ThumbnailUtils.createVideoThumbnail(mVideoThumbnail, MediaStore.Video.Thumbnails.MICRO_KIND);
                         mPlayerView.setUseArtwork(true);
                         mPlayerView.setDefaultArtwork(mVideoThumbnailImage);
                     }
-                }
-                else{
+                } else {
                     mVideoUri = Uri.parse(mStep.getVideoURL());
                 }
             }
@@ -117,14 +118,14 @@ public class VideoFragment extends Fragment {
     }
 
     // Initialize exoplayer
-    public void initializeVideoPlayer(Uri videoUri){
+    public void initializeVideoPlayer(Uri videoUri) {
 
         mStepDescription.setText(mStep.getDescription());
         mStepTitle.setText(mStep.getShortDescription());
 
-        if(mSimpleExoPlayer == null){
+        if (mSimpleExoPlayer == null) {
 
-            mSimpleExoPlayer=  ExoPlayerFactory.newSimpleInstance(getActivity(),
+            mSimpleExoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity(),
                     new DefaultTrackSelector(),
                     new DefaultLoadControl());
 
@@ -134,7 +135,7 @@ public class VideoFragment extends Fragment {
             // Prepare the MediaSource.
             String userAgent = Util.getUserAgent(getActivity(), getString(R.string.app_name));
             MediaSource mediaSource = new ExtractorMediaSource(videoUri,
-                    new DefaultDataSourceFactory(getActivity(), userAgent),
+                    new DefaultDataSourceFactory(Objects.requireNonNull(getActivity()), userAgent),
                     new DefaultExtractorsFactory(),
                     null,
                     null);
@@ -172,7 +173,7 @@ public class VideoFragment extends Fragment {
         if (Util.SDK_INT <= 23 || mSimpleExoPlayer == null) {
             initializeVideoPlayer(mVideoUri);
         }
-        if(mSimpleExoPlayer != null){
+        if (mSimpleExoPlayer != null) {
             mSimpleExoPlayer.setPlayWhenReady(mShouldPlayWhenReady);
             mSimpleExoPlayer.seekTo(mPlayerPosition);
         }
@@ -181,7 +182,7 @@ public class VideoFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if(mSimpleExoPlayer != null){
+        if (mSimpleExoPlayer != null) {
             updateStartPosition();
             if (Util.SDK_INT <= 23) {
                 releasePlayer();
@@ -192,7 +193,7 @@ public class VideoFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        if(mSimpleExoPlayer != null){
+        if (mSimpleExoPlayer != null) {
             updateStartPosition();
             if (Util.SDK_INT > 23) {
                 releasePlayer();

@@ -65,15 +65,15 @@ public class ServiceWidget extends IntentService {
 
     private void handleActionOpenRecipe() {
         SharedPreferences sharedpreferences =
-                getSharedPreferences(ConstantValues.YUMMIO_SHARED_PREF,MODE_PRIVATE);
+                getSharedPreferences(ConstantValues.SWEET_CULINARY_SHARED_PREF, MODE_PRIVATE);
         String jsonRecipe = sharedpreferences.getString(ConstantValues.JSON_RESULT_EXTRA, "");
         StringBuilder stringBuilder = new StringBuilder();
         Gson gson = new Gson();
         Recipe recipe = gson.fromJson(jsonRecipe, Recipe.class);
-        int id= recipe.getId();
-        int imgResId = ConstantValues.recipeImages[id-1];
+        int id = recipe.getId();
+        int imgResId = ConstantValues.recipeImages[id - 1];
         List<Ingredient> ingredientList = recipe.getIngredients();
-        for(Ingredient ingredient : ingredientList){
+        for (Ingredient ingredient : ingredientList) {
             String quantity = String.valueOf(ingredient.getQuantity());
             String measure = ingredient.getMeasure();
             String ingredientName = ingredient.getIngredient();
@@ -95,10 +95,10 @@ public class ServiceWidget extends IntentService {
     }
 
     // For Android O and above
-    public static void startActionOpenRecipeO(Context context){
+    public static void startActionOpenRecipeO(Context context) {
         Intent intent = new Intent(context, ServiceWidget.class);
         intent.setAction(ACTION_OPEN_RECIPE);
-        ContextCompat.startForegroundService(context,intent);
+        ContextCompat.startForegroundService(context, intent);
     }
 }
 

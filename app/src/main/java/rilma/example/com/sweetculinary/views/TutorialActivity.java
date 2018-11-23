@@ -22,15 +22,14 @@ import rilma.example.com.sweetculinary.adapters.StepAdapter;
 import rilma.example.com.sweetculinary.models.Step;
 import rilma.example.com.sweetculinary.utils.ConstantValues;
 
-public class TutorialActivity extends AppCompatActivity implements View.OnClickListener, StepAdapter.OnStepClick{
+public class TutorialActivity extends AppCompatActivity implements View.OnClickListener, StepAdapter.OnStepClick {
 
     public static final String STEP_LIST_STATE = "step_list_state";
     public static final String STEP_NUMBER_STATE = "step_number_state";
     public static final String STEP_LIST_JSON_STATE = "step_list_json_state";
     private boolean isTablet;
     private int videoNumber = 0;
-    private StepAdapter stepAdapter;
-    
+
     @BindView(R.id.bv_next_step)
     Button nextStep;
 
@@ -52,12 +51,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_tutorial);
 
         // Check if device is a tablet
-        if(findViewById(R.id.tutorial_tablet) != null){
-            isTablet = true;
-        }
-        else{
-            isTablet = false;
-        }
+        isTablet = findViewById(R.id.tutorial_tablet) != null;
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -67,20 +61,15 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
             if (intent.hasExtra(ConstantValues.JSON_RESULT_EXTRA)) {
                 jsonResult = getIntent().getStringExtra(ConstantValues.JSON_RESULT_EXTRA);
             }
-            if (intent.hasExtra(ConstantValues.RECIPE_INTENT_EXTRA)){
+            if (intent.hasExtra(ConstantValues.RECIPE_INTENT_EXTRA)) {
                 String title = getIntent().getStringExtra(ConstantValues.RECIPE_INTENT_EXTRA);
                 String titleBar = title + " - Tutorial";
                 setActionBarTitle(titleBar);
             }
-            if(intent.getStringExtra(ConstantValues.WIDGET_EXTRA) != null){
-                isFromWidget = true;
-            }
-            else{
-                isFromWidget = false;
-            }
+            isFromWidget = intent.getStringExtra(ConstantValues.WIDGET_EXTRA) != null;
         }
         // If there is no saved state, instantiate fragment
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             playVideo(stepList.get(videoNumber));
         }
 
@@ -90,7 +79,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     }
 
     // Initialize fragment
-    public void playVideo(Step step){
+    public void playVideo(Step step) {
         VideoFragment videoPlayerFragment = new VideoFragment();
         Bundle stepsBundle = new Bundle();
         stepsBundle.putParcelable(ConstantValues.STEP_SINGLE, step);
@@ -104,7 +93,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     }
 
     // Initialize fragment
-    public void playVideoReplace(Step step){
+    public void playVideoReplace(Step step) {
         VideoFragment videoPlayerFragment = new VideoFragment();
         Bundle stepsBundle = new Bundle();
         stepsBundle.putParcelable(ConstantValues.STEP_SINGLE, step);
@@ -140,19 +129,16 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         //If it's last step show cooking is over
-        if(videoNumber == stepList.size()-1){
+        if (videoNumber == stepList.size() - 1) {
             Toast.makeText(this, R.string.end_tutorial, Toast.LENGTH_SHORT).show();
-        }
-        else{
-            if(v.getId() == previousStep.getId()){
+        } else {
+            if (v.getId() == previousStep.getId()) {
                 videoNumber--;
-                if(videoNumber < 0){
+                if (videoNumber < 0) {
                     Toast.makeText(this, R.string.next_step, Toast.LENGTH_SHORT).show();
-                }
-                else
+                } else
                     playVideoReplace(stepList.get(videoNumber));
-            }
-            else if(v.getId() == nextStep.getId()){
+            } else if (v.getId() == nextStep.getId()) {
                 videoNumber++;
                 playVideoReplace(stepList.get(videoNumber));
             }
@@ -165,15 +151,13 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         playVideoReplace(stepList.get(position));
     }
 
-    public void handleUiForDevice(){
-        if(!isTablet){
+    public void handleUiForDevice() {
+        if (!isTablet) {
             // Set button listeners
             nextStep.setOnClickListener(this);
             previousStep.setOnClickListener(this);
-        }
-
-        else{//Tablet view
-            stepAdapter = new StepAdapter(this, stepList, this, videoNumber);
+        } else {//Tablet view
+            StepAdapter stepAdapter = new StepAdapter(this, stepList, this, videoNumber);
             linearLayoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(stepAdapter);

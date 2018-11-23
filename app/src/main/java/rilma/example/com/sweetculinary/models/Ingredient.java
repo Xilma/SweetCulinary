@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Ingredient implements Parcelable{
+public class Ingredient implements Parcelable {
     @SerializedName("quantity")
     @Expose
     private Double quantity;

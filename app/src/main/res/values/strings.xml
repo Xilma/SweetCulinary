@@ -15,7 +15,6 @@
     <string name="tutorial">Tutorial</string>
     <string name="ingredients_title">Ingredients</string>
     <string name="step_description">Step Description:</string>
-    <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="widget_icon">Widget image</string>
     <string name="open_ingredients">View ingredients of this recipe</string>

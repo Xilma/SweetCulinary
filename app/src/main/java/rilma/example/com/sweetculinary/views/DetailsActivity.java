@@ -42,25 +42,17 @@ public class DetailsActivity extends AppCompatActivity {
     String jsonResult;
     List<Ingredient> ingredientList;
 
-    private boolean isTablet;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-        if(findViewById(R.id.recipe_details_tablet) != null){
-            isTablet = true;
-        }
-        else{
-            isTablet = false;
-        }
+        boolean isTablet = findViewById(R.id.recipe_details_tablet) != null;
 
-
-        if(getIntent().getStringExtra(ConstantValues.WIDGET_EXTRA) != null){
+        if (getIntent().getStringExtra(ConstantValues.WIDGET_EXTRA) != null) {
             SharedPreferences sharedpreferences =
-                    getSharedPreferences(ConstantValues.YUMMIO_SHARED_PREF,MODE_PRIVATE);
+                    getSharedPreferences(ConstantValues.SWEET_CULINARY_SHARED_PREF, MODE_PRIVATE);
             String jsonRecipe = sharedpreferences.getString(ConstantValues.JSON_RESULT_EXTRA, "");
             jsonResult = jsonRecipe;
 
@@ -69,18 +61,15 @@ public class DetailsActivity extends AppCompatActivity {
 
             stepList = (ArrayList<Step>) recipe.getSteps();
             ingredientList = recipe.getIngredients();
-        }
-        else{
+        } else {
 
             // Check if state saved
-            if(savedInstanceState != null)
-            {
+            if (savedInstanceState != null) {
                 recipeList = savedInstanceState.getParcelableArrayList(RECIPE_LIST_STATE);
                 jsonResult = savedInstanceState.getString(RECIPE_JSON_STATE);
                 stepList = (ArrayList<Step>) recipeList.get(0).getSteps();
                 ingredientList = recipeList.get(0).getIngredients();
-            }
-            else{
+            } else {
                 // Get recipe from intent extra
                 Intent recipeIntent = getIntent();
                 recipeList = recipeIntent.getParcelableArrayListExtra(ConstantValues.RECIPE_INTENT_EXTRA);
@@ -95,10 +84,9 @@ public class DetailsActivity extends AppCompatActivity {
         detailsAdapter = new DetailsAdapter(this, ingredientList);
 
         RecyclerView.LayoutManager mLayoutManager;
-        if(isTablet){
+        if (isTablet) {
             mLayoutManager = new GridLayoutManager(this, 2);
-        }
-        else{
+        } else {
             mLayoutManager = new LinearLayoutManager(this);
         }
 

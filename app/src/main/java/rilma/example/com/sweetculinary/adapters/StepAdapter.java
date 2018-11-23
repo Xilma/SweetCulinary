@@ -16,11 +16,11 @@ import butterknife.ButterKnife;
 import rilma.example.com.sweetculinary.R;
 import rilma.example.com.sweetculinary.models.Step;
 
-public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder>{
+public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
 
     private final Context context;
     private final ArrayList<Step> stepList;
-    public OnStepClick onStepClick;
+    private OnStepClick onStepClick;
     private int rowNo;
 
     public StepAdapter(Context context, ArrayList<Step> stepArrayList, OnStepClick onStepClick, int rowNo) {
@@ -44,7 +44,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         holder.stepTitle.setText(stepList.get(position).getShortDescription());
-        holder.stepNumber.setText(String.valueOf(position+1));
+        holder.stepNumber.setText(String.valueOf(position + 1));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +55,9 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder>{
             }
         });
 
-        if(rowNo == position){
+        if (rowNo == position) {
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorBackground2));
-        }
-
-        else
-        {
+        } else {
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorBackground3));
         }
     }
@@ -85,7 +82,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder>{
 
         ViewHolder(View v) {
             super(v);
-            ButterKnife.bind(this,v);
+            ButterKnife.bind(this, v);
         }
     }
 }

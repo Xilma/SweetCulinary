@@ -1,5 +1,4 @@
-<android.support.constraint.ConstraintLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,20 +22,20 @@
 
     <Button
         android:id="@+id/bv_next_step"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/next_step"
-        style="@style/buttonStyle"
         android:layout_margin="@dimen/norm_padding"
+        android:text="@string/next_step"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bv_previous_step" />
 
     <Button
         android:id="@+id/bv_previous_step"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/buttonStyle"
         android:text="@string/previous_step"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bv_next_step"

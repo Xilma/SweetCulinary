@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,7 +28,7 @@ import rilma.example.com.sweetculinary.utils.BakingService;
 import rilma.example.com.sweetculinary.utils.Network;
 
 public class MainActivity extends AppCompatActivity {
-    
+
     public static final String RECIPE_JSON_STATE = "recipe_json_state";
     public static final String RECIPE_ARRAYLIST_STATE = "recipe_arraylist_state";
 
@@ -38,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     String jsonResult;
     ArrayList<Recipe> recipeList = new ArrayList<>();
 
-    @BindView(R.id.rv_recipe) RecyclerView recyclerView;
+    @BindView(R.id.rv_recipe)
+    RecyclerView recyclerView;
 
     private boolean isTablet;
 
@@ -49,34 +49,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        if(findViewById(R.id.recipe_tablet) != null){
-            isTablet = true;
-        }
-        else{
-            isTablet = false;
-        }
+        isTablet = findViewById(R.id.recipe_tablet) != null;
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             jsonResult = savedInstanceState.getString(RECIPE_JSON_STATE);
             recipeList = savedInstanceState.getParcelableArrayList(RECIPE_ARRAYLIST_STATE);
             recipeAdapter = new RecipeAdapter(MainActivity.this, recipeList, jsonResult);
             RecyclerView.LayoutManager layoutManager;
-            if(isTablet){
+            if (isTablet) {
                 layoutManager = new GridLayoutManager(MainActivity.this, 2);
-            }
-            else{
+            } else {
                 layoutManager = new LinearLayoutManager(MainActivity.this);
             }
 
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(recipeAdapter);
-        }
-        else{
-            if(Network.isConnected(this)){
+        } else {
+            if (Network.isConnected(this)) {
                 bakingService = new BakingClient().bakingService;
                 new FetchRecipesAsync().execute();
-            }
-            else{
+            } else {
                 displayErrorMessage();
             }
 
@@ -113,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private class FetchRecipesAsync extends AsyncTask<Void,Void,Void> {
+    private class FetchRecipesAsync extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             fetchRecipes();
@@ -127,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
-            public void onResponse(@NonNull Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
+            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
 
                 recipeList = response.body();
 
@@ -135,10 +127,9 @@ public class MainActivity extends AppCompatActivity {
 
                 recipeAdapter = new RecipeAdapter(MainActivity.this, recipeList, jsonResult);
                 RecyclerView.LayoutManager layoutManager;
-                if(isTablet){
+                if (isTablet) {
                     layoutManager = new GridLayoutManager(MainActivity.this, 2);
-                }
-                else{
+                } else {
                     layoutManager = new LinearLayoutManager(MainActivity.this);
                 }
 
@@ -148,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<ArrayList<Recipe>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
                 Log.d("Failed to import json", t.toString());
             }
         });

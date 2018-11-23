@@ -5,17 +5,11 @@ public class ConstantValues {
     public static final String WIDGET_EXTRA = "widget";
     public static final String RECIPE_INTENT_EXTRA = "recipe_intent";
     public static final String STEP_SINGLE = "step_single";
-    public static final String STEP_ARRAYLIST = "step_arraylist";
     public static final String STEP_INTENT_EXTRA = "step_intent";
-    public static final String STEP_VIDEO_URI = "step_video_uri";
-    public static final String STEP_THUMBNAIL_URI = "step_thumbnail_uri";
-    public static final String STEP_DESCRIPTION = "step_description";
-    public static final String STEP_SHORT_DESCRIPTION = "step_short_description";
-    public static final String STEP_NUMBER = "step_number";
-    public static final String YUMMIO_SHARED_PREF = "yummio_shared_pref";
+    public static final String SWEET_CULINARY_SHARED_PREF = "shared_pref";
 
     public static String[] units = {"CUP", "TBLSP", "TSP", "G", "K", "OZ", "UNIT"};
-    public static String[] unitName = {"Cup", "Tblsp", "Tsp", "gram", "Kg", "Ounce", "Unit"};
+    public static String[] unitName = {"Cup", "Tblsp", "Tsp", "gram", "Kg", "Oz", "Unit"};
     public static int[] unitImages = {
             rilma.example.com.sweetculinary.R.drawable.ic_mug,
             rilma.example.com.sweetculinary.R.drawable.ic_tablespoon,
