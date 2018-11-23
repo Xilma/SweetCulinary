@@ -24,7 +24,7 @@ import rilma.example.com.sweetculinary.providers.SweetCulinaryWidget;
 
 public class ServiceWidget extends IntentService {
 
-    public static final String ACTION_OPEN_RECIPE = "rilma.example.com.sweetculinary.utils.service_widget";
+    public static final String ACTION_OPEN_RECIPE = "rilma.example.com.sweetculinary.utils.ServiceWidget";
 
     public ServiceWidget(String name) {
         super(name);
