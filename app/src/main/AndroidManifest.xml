@@ -40,6 +40,8 @@
                 android:value=".views.MainActivity" />
         </activity>
 
+        <service android:name=".utils.ServiceWidget" />
+
         <receiver android:name=".providers.SweetCulinaryWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

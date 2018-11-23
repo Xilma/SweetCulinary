@@ -25,6 +25,7 @@ public class ConstantValues {
             rilma.example.com.sweetculinary.R.drawable.ic_weight,
             rilma.example.com.sweetculinary.R.drawable.ic_unit
     };
+
     public static int[] recipeImages = {
             rilma.example.com.sweetculinary.R.drawable.nutella_pie,
             rilma.example.com.sweetculinary.R.drawable.brownies,
