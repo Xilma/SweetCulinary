@@ -98,6 +98,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                     //Start the widget service to update the widget
                     ServiceWidget.startActionOpenRecipe(context);
                 }
+
             }
         });
 

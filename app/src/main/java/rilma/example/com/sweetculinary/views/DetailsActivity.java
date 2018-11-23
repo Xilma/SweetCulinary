@@ -3,21 +3,26 @@ package rilma.example.com.sweetculinary.views;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rilma.example.com.sweetculinary.IdlingResource.SimpleIdlingResource;
 import rilma.example.com.sweetculinary.R;
 import rilma.example.com.sweetculinary.adapters.DetailsAdapter;
 import rilma.example.com.sweetculinary.models.Ingredient;
@@ -40,7 +45,22 @@ public class DetailsActivity extends AppCompatActivity {
     ArrayList<Recipe> recipeList;
     ArrayList<Step> stepList;
     String jsonResult;
-    List<Ingredient> ingredientList;
+    ArrayList<Ingredient> ingredientList;
+
+    @Nullable
+    private SimpleIdlingResource mIdlingResource;
+
+    /**
+     * From test, creates and returns a new {@link SimpleIdlingResource}.
+     */
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+        return mIdlingResource;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +80,7 @@ public class DetailsActivity extends AppCompatActivity {
             Recipe recipe = gson.fromJson(jsonRecipe, Recipe.class);
 
             stepList = (ArrayList<Step>) recipe.getSteps();
-            ingredientList = recipe.getIngredients();
+            ingredientList = (ArrayList<Ingredient>) recipe.getIngredients();
         } else {
 
             // Check if state saved
@@ -68,16 +88,21 @@ public class DetailsActivity extends AppCompatActivity {
                 recipeList = savedInstanceState.getParcelableArrayList(RECIPE_LIST_STATE);
                 jsonResult = savedInstanceState.getString(RECIPE_JSON_STATE);
                 stepList = (ArrayList<Step>) recipeList.get(0).getSteps();
-                ingredientList = recipeList.get(0).getIngredients();
+                ingredientList = (ArrayList<Ingredient>) recipeList.get(0).getIngredients();
             } else {
                 // Get recipe from intent extra
                 Intent recipeIntent = getIntent();
                 recipeList = recipeIntent.getParcelableArrayListExtra(ConstantValues.RECIPE_INTENT_EXTRA);
                 jsonResult = recipeIntent.getStringExtra(ConstantValues.JSON_RESULT_EXTRA);
-                stepList = (ArrayList<Step>) recipeList.get(0).getSteps();
-                ingredientList = recipeList.get(0).getIngredients();
-                String title = recipeList.get(0).getName() + " - Ingredients";
-                setActionBarTitle(title);
+                if(recipeList != null){
+                    stepList = (ArrayList<Step>) recipeList.get(0).getSteps();
+                    ingredientList = (ArrayList<Ingredient>) recipeList.get(0).getIngredients();
+                    String title = recipeList.get(0).getName() + " - Ingredients";
+                    setActionBarTitle(title);
+                }else{
+                    Log.e("NullList", "Recipe list is null");
+                }
+
             }
         }
 
@@ -97,11 +122,16 @@ public class DetailsActivity extends AppCompatActivity {
         beginCooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailsActivity.this, TutorialActivity.class);
-                intent.putParcelableArrayListExtra(ConstantValues.STEP_INTENT_EXTRA, stepList);
-                intent.putExtra(ConstantValues.RECIPE_INTENT_EXTRA, recipeList.get(0).getName());
-                intent.putExtra(ConstantValues.JSON_RESULT_EXTRA, jsonResult);
-                startActivity(intent);
+                if(recipeList!=null){
+                    Intent intent = new Intent(DetailsActivity.this, TutorialActivity.class);
+                    intent.putParcelableArrayListExtra(ConstantValues.STEP_INTENT_EXTRA, stepList);
+                    intent.putExtra(ConstantValues.RECIPE_INTENT_EXTRA, recipeList.get(0).getName());
+                    intent.putExtra(ConstantValues.JSON_RESULT_EXTRA, jsonResult);
+                    startActivity(intent);
+                }
+                else{
+                    Log.e("Null List", "Recipe list is null");
+                }
             }
         });
     }

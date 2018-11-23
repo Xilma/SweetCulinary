@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,11 +22,11 @@ import rilma.example.com.sweetculinary.utils.ConstantValues;
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
     private final Context context;
-    private final List<Ingredient> ingredientList;
+    private final ArrayList<Ingredient> mIngredientList;
 
-    public DetailsAdapter(Context context, List<Ingredient> ingredientList) {
+    public DetailsAdapter(Context context, ArrayList<Ingredient> ingredientList) {
         this.context = context;
-        this.ingredientList = ingredientList;
+        this.mIngredientList = ingredientList;
     }
 
     @NonNull
@@ -41,31 +41,36 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        Ingredient ingredient = ingredientList.get(position);
+        if(mIngredientList!=null){
+            holder.ingredientName.setText(mIngredientList.get(position).getIngredient());
+            holder.unitQuantity.setText(context.getString(R.string.quantity) + String.valueOf(mIngredientList.get(position).getQuantity()));
 
-        holder.ingredientName.setText(ingredient.getIngredient());
-        holder.unitQuantity.setText(context.getString(R.string.quantity) + String.valueOf(ingredient.getQuantity()));
+            String measure = mIngredientList.get(position).getMeasure();
+            int unitNo = 0;
 
-        String measure = ingredient.getMeasure();
-        int unitNo = 0;
-
-        for (int i = 0; i < ConstantValues.units.length; i++) {
-            if (measure.equals(ConstantValues.units[i])) {
-                unitNo = i;
-                break;
+            for (int i = 0; i < ConstantValues.units.length; i++) {
+                if (measure.equals(ConstantValues.units[i])) {
+                    unitNo = i;
+                    break;
+                }
             }
-        }
-        int unitImage = ConstantValues.unitImages[unitNo];
-        Log.d("UNIT_NO: ", String.valueOf(unitImage));
-        String unitLongName = ConstantValues.unitName[unitNo];
+            int unitImage = ConstantValues.unitImages[unitNo];
+            Log.d("UNIT_NO: ", String.valueOf(unitImage));
+            String unitLongName = ConstantValues.unitName[unitNo];
 
-        holder.unitImage.setImageResource(unitImage);
-        holder.ingredientMeasureName.setText(unitLongName);
+            holder.unitImage.setImageResource(unitImage);
+            holder.ingredientMeasureName.setText(unitLongName);
+        }else{
+            Log.e("NullList", "Ingredient List is null");
+        }
     }
 
     @Override
     public int getItemCount() {
-        return ingredientList.size();
+        if(mIngredientList!=null){
+            return mIngredientList.size();
+        }
+        return Log.e("NullList", "Ingredient List is null");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
