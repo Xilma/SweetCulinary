@@ -16,3 +16,4 @@ This is an app that enables Udacity’s resident baker-in-chief, Miriam, to shar
 1. Udacity Android course
 2. Stackoverflow
 3. ALC Developer Community
+4. Akın Demir's blogpost on Exoplayer
